@@ -25,4 +25,9 @@ public class ProductService {
 		return  productDao.addProduct(product);
 	}
 
+	public ProductEntity getProductStatusByCode(String productcode) {
+		// TODO Auto-generated method stub
+		return productDao.getProductStatusByCode(productcode);
+	}
+
 }

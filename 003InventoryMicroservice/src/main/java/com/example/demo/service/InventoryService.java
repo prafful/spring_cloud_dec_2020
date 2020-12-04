@@ -25,4 +25,9 @@ public class InventoryService {
 		return  inventoryDao.addInventory(inventory);
 	}
 
+	public InventoryEntity getInventoryStatusByCode(String productcode) {
+		// TODO Auto-generated method stub
+		return inventoryDao.getInventoryStatusByCode(productcode);
+	}
+
 }

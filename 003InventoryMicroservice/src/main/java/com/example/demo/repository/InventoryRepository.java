@@ -6,4 +6,7 @@ import com.example.demo.entity.InventoryEntity;
 
 public interface InventoryRepository extends JpaRepository<InventoryEntity, Integer>{
 
+	//named query or derived query
+	 InventoryEntity  findByProductCode(String productcode);
+	
 }

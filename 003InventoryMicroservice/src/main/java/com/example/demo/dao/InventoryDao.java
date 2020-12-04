@@ -30,4 +30,10 @@ public class InventoryDao {
 	
 	}
 
+	public InventoryEntity getInventoryStatusByCode(String productcode) {
+		// TODO Auto-generated method stub
+		return inventoryRepository.findByProductCode(productcode);
+		
+	}
+
 }
