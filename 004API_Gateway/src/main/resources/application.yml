@@ -1,0 +1,24 @@
+##server.port:8888
+##spring.application.name=api-gateway
+##eureka.instance.hostname=localhost
+##eureka.client.register-with-eureka=true
+##eureka.client.fetch-registry=true
+##eureka.client.service-url.defaultZone=http://${eureka.instance.hostname}:1234/eureka
+
+server:  port: 8888
+  
+spring:  application:    name: api-gateway  cloud:    gateway:      routes:      - id: productMicroservice
+        uri: http://localhost:8881/
+        predicates:
+        - Path=/product/**          
+      - id: inventoryMicroservice
+        uri: http://localhost:8882/
+        predicates:
+        - Path=/inventory/**
+              
+eureka:  instance:    hostname: localhost  client:    register-with-eureka: true
+    fetch-registry: true
+    service-url:      defaultZone: http://${eureka.instance.hostname}:1234/eureka
+      
+      
+

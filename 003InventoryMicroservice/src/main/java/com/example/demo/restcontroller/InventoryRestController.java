@@ -15,6 +15,7 @@ import com.example.demo.pojo.Inventory;
 import com.example.demo.service.InventoryService;
 
 @RestController
+@RequestMapping("/inventory")
 public class InventoryRestController {
 	
 	@Autowired

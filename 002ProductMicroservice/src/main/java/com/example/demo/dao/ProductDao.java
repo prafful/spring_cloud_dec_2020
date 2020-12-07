@@ -48,7 +48,7 @@ public class ProductDao {
 	public ProductEntity getProductStatusByCode(String productcode) {
 		// TODO Auto-generated method stub
 		
-		String url = "http://localhost:8882/get/code/" + productcode;
+		String url = "http://localhost:8888/inventory/get/code/" + productcode;
 		//Rest Template - Spring (Web Dependency) It is of sync(blocking) nature.
 		//Web Client - Reactive Spring (Web Flux Dependency) It is of async(non-blocking) nature.
 		//Http Client - Java 11 (sync (blocking) and async(non-blocking))
