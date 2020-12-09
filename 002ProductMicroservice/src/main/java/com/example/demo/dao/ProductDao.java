@@ -13,6 +13,8 @@ import com.example.demo.entity.ProductEntity;
 import com.example.demo.pojo.InventoryResponse;
 import com.example.demo.pojo.Product;
 import com.example.demo.repository.ProductRepository;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 @Repository
 public class ProductDao {
@@ -44,9 +46,20 @@ public class ProductDao {
 		return productRepository.findAll();
 	
 	}
+	
+	@HystrixCommand(fallbackMethod = "getProductStatusByCodeFailed",
+			commandProperties = {
+					@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000")
+			})
 
 	public ProductEntity getProductStatusByCode(String productcode) {
 		// TODO Auto-generated method stub
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		String url = "http://localhost:8888/inventory/get/code/" + productcode;
 		//Rest Template - Spring (Web Dependency) It is of sync(blocking) nature.
@@ -68,5 +81,17 @@ public class ProductDao {
 		
 		return productRepository.findByProductCode(productcode);
 	}
+	
+	
 
+	public ProductEntity getProductStatusByCodeFailed(String productCode) {
+		System.out.println("##############################################################################################");
+		System.out.println("#############################################Failed###########################################");
+		System.out.println("##############################################################################################");
+		ProductEntity pe = productRepository.findByProductCode(productCode);
+		return pe;
+		
+	}
+	
+	
 }
